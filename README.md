@@ -1,4 +1,5 @@
 
+# Fiber Boilerplate Clean Architecture
 ### Looking for some more features or ideas??? Let's discuss on Discussions.
 
 This is the go boilerplate on the top of fiber web framework.
@@ -13,8 +14,6 @@ The features include:
 * Email confirmation on Registration
 * Role based authorization using Casbin
 * File uploads
-* UI on Tailwind. Setup ready for VueJS integration
-* Laravel mix for UI
 * Payment processing via PayPal
 * Logging via Phuslu/Log with file rotation
 * PostGres or MySQL with GORM V2
@@ -29,11 +28,9 @@ The features include:
 * Easy and Almost Zero Downtime Production Deployment with Makefile
 
 # Installation
-* Clone the repo `git clone https://github.com/sujit-baniya/fiber-boilerplate.git`
+* Clone the repo `git clone https://github.com/andynur/fiber-boilerplate.git`
 * Make sure you have installed: Redis, MySQL or Postgres
 * Copy .env.sample to .env
-* To build the frontend, install nodejs
-* Then run `npm install` and `npm run prod`
 * Your server should be up now
 
 Thanks to following libraries:

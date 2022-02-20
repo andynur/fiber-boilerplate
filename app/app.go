@@ -1,18 +1,19 @@
 package app
 
 import (
+	"regexp"
+
+	"github.com/andynur/fiber-boilerplate/config"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/compress"
 	"github.com/gofiber/fiber/v2/middleware/etag"
 	"github.com/gofiber/fiber/v2/middleware/pprof"
 	"github.com/gofiber/fiber/v2/middleware/recover"
-	"github.com/sujit-baniya/fiber-boilerplate/config"
-	"regexp"
 )
 
 var Http *config.AppConfig
 
-var Version = "develop"
+var Version = "v1.0"
 
 func Load(configFile string) {
 	Http = &config.AppConfig{ConfigFile: configFile}

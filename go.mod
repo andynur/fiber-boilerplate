@@ -1,4 +1,4 @@
-module github.com/sujit-baniya/fiber-boilerplate
+module github.com/andynur/fiber-boilerplate
 
 go 1.17
 

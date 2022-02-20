@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"github.com/pkg/errors"
 	"os"
 	"os/signal"
 	"path/filepath"
@@ -10,6 +9,8 @@ import (
 	"strconv"
 	"strings"
 	"syscall"
+
+	"github.com/pkg/errors"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"

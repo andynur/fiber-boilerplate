@@ -1,10 +1,11 @@
 package config
 
 import (
-	"github.com/valyala/bytebufferpool"
-	mail "github.com/xhit/go-simple-mail/v2"
 	"log"
 	"time"
+
+	"github.com/valyala/bytebufferpool"
+	mail "github.com/xhit/go-simple-mail/v2"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -16,7 +17,7 @@ type Mail struct {
 	Username    string `mapstructure:"MAIL_USERNAME" yaml:"username" env:"MAIL_USERNAME" env-default:"821c8fc0bb1e19"`
 	Password    string `mapstructure:"MAIL_PASSWORD" yaml:"password" env:"MAIL_PASSWORD" env-default:"24edfcaf91afbc"`
 	Encryption  string `mapstructure:"MAIL_ENCRYPTION" yaml:"encryption" env:"MAIL_ENCRYPTION" env-default:"tls"`
-	FromAddress string `mapstructure:"MAIL_FROM_ADDRESS" yaml:"from_address" env:"MAIL_FROM_ADDRESS" env-default:"itsursujit@gmail.com"`
+	FromAddress string `mapstructure:"MAIL_FROM_ADDRESS" yaml:"from_address" env:"MAIL_FROM_ADDRESS" env-default:"andynur.id@gmail.com"`
 	FromName    string `mapstructure:"MAIL_FROM_NAME" yaml:"from_name" env:"MAIL_FROM_NAME" env-default:"Verify-Rest"`
 	View        *ViewConfig
 	Port        int `mapstructure:"MAIL_PORT" yaml:"port" env:"MAIL_PORT" env-default:"2525"`

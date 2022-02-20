@@ -4,10 +4,10 @@ import (
 	"flag"
 	"log"
 
+	"github.com/andynur/fiber-boilerplate/app"
+	"github.com/andynur/fiber-boilerplate/database/migrations"
+	"github.com/andynur/fiber-boilerplate/routes"
 	"github.com/pyroscope-io/pyroscope/pkg/agent/profiler"
-	"github.com/sujit-baniya/fiber-boilerplate/app"
-	"github.com/sujit-baniya/fiber-boilerplate/migrations"
-	"github.com/sujit-baniya/fiber-boilerplate/rest/routes"
 )
 
 func main() {

@@ -5,4 +5,4 @@ name = "go"
 enabled = true
 
   [analyzers.meta]
-  import_paths = ["github.com/sujit-baniya/fiber-boilerplate"]
+  import_paths = ["github.com/andynur/fiber-boilerplate"]

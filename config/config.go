@@ -2,6 +2,10 @@ package config
 
 import (
 	"fmt"
+	"os"
+	"path/filepath"
+	"time"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/joho/godotenv"
@@ -9,9 +13,6 @@ import (
 	"github.com/sujit-baniya/ip"
 	"github.com/sujit-baniya/log"
 	"github.com/sujit-baniya/sblogger"
-	"os"
-	"path/filepath"
-	"time"
 )
 
 // Config is a application configuration structure
