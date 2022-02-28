@@ -32,7 +32,7 @@ func ValidateRegisterPost(c *fiber.Ctx) error {
 }
 
 func ValidateConfirmToken(c *fiber.Ctx) error {
-	t := utils.Decrypt(c.Query("t"), app.Http.Server.Key)
+	t := utils.DecryptToken(c.Query("t"), app.Http.Server.Key)
 	user, err := models.GetUserByEmail(t)
 	if err != nil {
 		return app.Http.Flash.WithError(c, fiber.Map{

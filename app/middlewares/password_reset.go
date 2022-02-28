@@ -35,7 +35,7 @@ func ValidatePasswordResetPost(c *fiber.Ctx) error {
 }
 
 func _validatePasswordReset(c *fiber.Ctx, t string) error {
-	t = utils.Decrypt(t, app.Http.Server.Key)
+	t = utils.DecryptToken(t, app.Http.Server.Key)
 	emailParts := strings.Split(t, "-reset-")
 	if len(emailParts) != 2 {
 		return errors.New("Invalid Password Reset Token")

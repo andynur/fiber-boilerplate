@@ -3,13 +3,16 @@ package utils
 import (
 	"crypto/aes"
 	"crypto/cipher"
+	"crypto/md5"
 	"crypto/rand"
+	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
 	"io"
+	"os"
 )
 
-func Encrypt(stringToEncrypt string, keyString string) (encryptedString string) {
+func EncryptToken(stringToEncrypt string, keyString string) (encryptedString string) {
 
 	//Since the key is in string, we need to convert decode it to bytes
 	key, _ := hex.DecodeString(keyString)
@@ -40,7 +43,7 @@ func Encrypt(stringToEncrypt string, keyString string) (encryptedString string) 
 	return fmt.Sprintf("%x", ciphertext)
 }
 
-func Decrypt(encryptedString string, keyString string) (decryptedString string) {
+func DecryptToken(encryptedString string, keyString string) (decryptedString string) {
 
 	key, _ := hex.DecodeString(keyString)
 	enc, _ := hex.DecodeString(encryptedString)
@@ -70,4 +73,64 @@ func Decrypt(encryptedString string, keyString string) (decryptedString string) 
 	}
 
 	return fmt.Sprintf("%s", plaintext)
+}
+
+func CryptoMD5Hash(text string) string {
+	hash := md5.Sum([]byte(text))
+	return hex.EncodeToString(hash[:])
+}
+
+func CryptoDoubleMD5Hash(text string) string {
+	return CryptoMD5Hash(CryptoMD5Hash(text))
+}
+
+func CryptoSHA256(text string) string {
+	hash := sha256.New()
+	hash.Write([]byte(text))
+	return hex.EncodeToString(hash.Sum(nil))
+}
+
+func CryptoSHA256Verify(text string, hash string) bool {
+	return hash == CryptoSHA256(text)
+}
+
+func AESEncrypt(plaintext string) (encrypted string, err error) {
+	key := os.Getenv("APP_AES_KEY")
+	c, err := aes.NewCipher([]byte(key))
+	if err != nil {
+		return "", err
+	}
+
+	gcm, err := cipher.NewGCM(c)
+	if err != nil {
+		return "", err
+	}
+
+	nonce := make([]byte, gcm.NonceSize())
+	io.ReadFull(rand.Reader, nonce)
+
+	return hex.EncodeToString(gcm.Seal(nonce, nonce, []byte(plaintext), nil)), nil
+}
+
+func AESDecrypt(encrypted string) (plaintext string, err error) {
+	encryptedBytes, err := hex.DecodeString(encrypted)
+	if err != nil {
+		return "", err
+	}
+
+	key := os.Getenv("APP_AES_KEY")
+	c, err := aes.NewCipher([]byte(key))
+	if err != nil {
+		return "", err
+	}
+
+	gcm, err := cipher.NewGCM(c)
+	if err != nil {
+		return "", err
+	}
+
+	nonce, ciphertext := encryptedBytes[:gcm.NonceSize()], encryptedBytes[gcm.NonceSize():]
+
+	p, err := gcm.Open(nil, nonce, ciphertext, nil)
+	return string(p), err
 }

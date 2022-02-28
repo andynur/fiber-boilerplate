@@ -1,5 +1,5 @@
 
-# Fiber Boilerplate Clean Architecture
+# Fiber Boilerplate - Service Oriented Pattern
 ### Looking for some more features or ideas??? Let's discuss on Discussions.
 
 This is the go boilerplate on the top of fiber web framework.

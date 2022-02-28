@@ -27,13 +27,13 @@ func SendConfirmationEmail(email string, baseURL string) {
 }
 
 func GenerateConfirmURL(email string, baseURL string) string {
-	token := utils.Encrypt(email, app.Http.Server.Key)
+	token := utils.EncryptToken(email, app.Http.Server.Key)
 	uri := fmt.Sprintf("%s/do/verify-email?t=%s", baseURL, token)
 	return uri
 }
 
 func GeneratePasswordResetURL(email string, baseURL string) string {
-	token := utils.Encrypt(email, app.Http.Server.Key)
+	token := utils.EncryptToken(email, app.Http.Server.Key)
 	uri := fmt.Sprintf("%s/reset-password?t=%s", baseURL, token)
 	return uri
 }
